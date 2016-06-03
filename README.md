@@ -15,6 +15,18 @@ After the validator was successfully created it can take several rules. The **ad
   $validator->validate();
 ```
 
+###Validation results
+After validation has performed the results can be read. To do so just call 3 types of functions depending on what results you are interessted in: all results, success results or results with errors.
+```php
+  $validator->getResult();
+  $validator->getSuccess();
+  $validator->getErrors();
+```
+While iterating through the results you can access the keys of the single results (array):
+- key
+- code
+- msg
+
 ###Validation constants
 
 | Constant                       | Effect                             |
