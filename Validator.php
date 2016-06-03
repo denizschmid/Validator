@@ -236,10 +236,9 @@
 		 * @return array
 		 */
 		public function getResultSuccess() {
-			/* @var $message ValidationMessage */
 			$success = [];
 			foreach( $this->getResult() as $message ) {
-				if( $message->getCode() === ValidationMessage::CODE_OK ) {
+				if( $message["code"] === ValidationMessage::CODE_OK ) {
 					$success[] = $message;
 				}
 			}
@@ -251,10 +250,9 @@
 		 * @return array
 		 */
 		public function getResultErrors() {
-			/* @var $message ValidationMessage */
 			$errors = [];
 			foreach( $this->getResult() as $message ) {
-				if( $message->getCode() !== ValidationMessage::CODE_OK ) {
+				if( $message["code"] !== ValidationMessage::CODE_OK ) {
 					$errors[] = $message;
 				}
 			}
@@ -321,24 +319,32 @@
 		 * Fehler-Code
 		 * @var string
 		 */
-		private $code;
+		public $code;
 		
 		/**
 		 * Fehlermeldung
 		 * @var string
 		 */
-		private $msg;
+		public $msg;
 		
 		/**
 		 * Attributszuordnung
 		 * @var string
 		 */
-		private $key;
+		public $key;
 		
 		public function __construct( $key, $code, $msg ) {
 			$this->key = $key;
 			$this->code = $code;
 			$this->msg = $msg;
+		}
+		
+		public function toArray() {
+			return [
+				"key"  => $this->key,
+				"code" => $this->code,
+				"msg"  => $this->msg
+			];
 		}
 		
 		public function getCode() { return $this->code; }
@@ -388,7 +394,11 @@
 		 * @return array
 		 */
 		public function getMessages() {
-			return $this->messages;
+			$array = [];
+			foreach( $this->messages as $message ) {
+				$array[] = (array)$message;
+			}
+			return $array;
 		}
 		
 		/**
