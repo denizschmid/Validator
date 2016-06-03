@@ -2,13 +2,20 @@
 Validator provides functions to validate data from user input and collects the errors from all failed validation for feedback.
 The Validator accepts either objects or array as data input. Before a validation can be performed the validation rules must be defined.
 
-###Creation, configuration and validating
+##Installation
+Install this package with bower
+```bash
+  bower install denizschmid/Validator
+```
+
+##Usage
 To create a Validator just use the default constructer:
 ```php
   use Dansnet\Validator;
   $validator = new Validator();
 ```
 
+###Adding rules
 After the validator was successfully created it can take several rules. The **addRule** method accepts 2 argument. The first argument informs the validator which member or key from the data input should be tested. If the input is an object, the validation class looks for a corresponding member. Otherwise it looks for the value of the defined key. The second argument defines the proper validation rule as a constant. Is everything configured you can start the validation with the appropriate method.
 ```php
   $validator->addRule("stringmember", Validator::VALIDATE_STRING);
