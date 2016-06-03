@@ -2,6 +2,7 @@
 Validator provides functions to validate data from user input and collects the errors from all failed validation for feedback.
 The Validator accepts either objects or array as data input. Before a validation can be performed the validation rules must be defined.
 
+###Creation, configuration and validating
 To create a Validator just use the default constructer:
 ```php
   use Dansnet\Validator;
@@ -14,7 +15,7 @@ After the validator was successfully created it can take several rules. The **ad
   $validator->validate();
 ```
 
-##Validation constants
+###Validation constants
 
 | Constant                       | Effect                             |
 | ------------------------------ | ---------------------------------- |
