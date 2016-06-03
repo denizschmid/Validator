@@ -22,10 +22,14 @@ After validation has performed the results can be read. To do so just call 3 typ
   $validator->getSuccess();
   $validator->getErrors();
 ```
-While iterating through the results you can access the keys of the single results (array):
-- key
-- code
-- msg
+The structure of one result is the following:
+```js
+{
+  "key": "stringmember",
+  "code": "0",
+  "msg": "ok"
+}
+```
 
 ###Validation constants
 
