@@ -14,33 +14,35 @@
 		const VALIDATE_BOOLEAN			= 3;
 		const VALIDATE_FLOAT			= 4;
 		const VALIDATE_EMAIL			= 5;
-		const VALIDATE_URL				= 6;
+		const VALIDATE_URL			= 6;
 		const VALIDATE_DATETIME			= 7;
 		const VALIDATE_NOT_EMPTY		= 8;
-		const VALIDATE_EXPRESSION		= 9;
+		const VALIDATE_EQUALS			= 9;
 				
 		private $VALIDATION_FUNCTION_MAPPING = [
-			VALIDATOR::VALIDATE_STRING			=> "validateString",
-			VALIDATOR::VALIDATE_INTEGER			=> "validateInteger",
-			VALIDATOR::VALIDATE_BOOLEAN			=> "validateBoolean",
-			VALIDATOR::VALIDATE_FLOAT			=> "validateFloat",
-			VALIDATOR::VALIDATE_EMAIL			=> "validateEmail",
-			VALIDATOR::VALIDATE_URL				=> "validateUrl",
+			VALIDATOR::VALIDATE_STRING		=> "validateString",
+			VALIDATOR::VALIDATE_INTEGER		=> "validateInteger",
+			VALIDATOR::VALIDATE_BOOLEAN		=> "validateBoolean",
+			VALIDATOR::VALIDATE_FLOAT		=> "validateFloat",
+			VALIDATOR::VALIDATE_EMAIL		=> "validateEmail",
+			VALIDATOR::VALIDATE_URL			=> "validateUrl",
 			VALIDATOR::VALIDATE_DATETIME		=> "validateDateTime",
 			VALIDATOR::VALIDATE_NOT_EMPTY		=> "validateNotEmpty",
-			VALIDATOR::VALIDATE_EXPRESSION		=> "validateExpression"
+			VALIDATOR::VALIDATE_EQUALS		=> "validateEquals",
+			VALIDATOR::VALIDATE_EQUALS_NOT		=> "validateEqualsNot"
 		];
 		
 		private $VALIDATION_MESSAGE_MAPPING = [
-			VALIDATOR::VALIDATE_STRING			=> "Input is not a string.",
-			VALIDATOR::VALIDATE_INTEGER			=> "Input is not an integer.",
-			VALIDATOR::VALIDATE_BOOLEAN			=> "Input is not a boolean.",
-			VALIDATOR::VALIDATE_FLOAT			=> "Input is not a float.",
-			VALIDATOR::VALIDATE_EMAIL			=> "Input is not an E-Mail.",
-			VALIDATOR::VALIDATE_URL				=> "Input is not an URL.",
+			VALIDATOR::VALIDATE_STRING		=> "Input is not a string.",
+			VALIDATOR::VALIDATE_INTEGER		=> "Input is not an integer.",
+			VALIDATOR::VALIDATE_BOOLEAN		=> "Input is not a boolean.",
+			VALIDATOR::VALIDATE_FLOAT		=> "Input is not a float.",
+			VALIDATOR::VALIDATE_EMAIL		=> "Input is not an E-Mail.",
+			VALIDATOR::VALIDATE_URL			=> "Input is not an URL.",
 			VALIDATOR::VALIDATE_DATETIME		=> "Input is not a DateTime.",
 			VALIDATOR::VALIDATE_NOT_EMPTY		=> "Input is empty.",
-			VALIDATOR::VALIDATE_EXPRESSION		=> "Expression failed."
+			VALIDATOR::VALIDATE_EQUALS		=> "Input does not match.",
+			VALIDATOR::VALIDATE_EQUALS_NOT		=> "Input does match. It should not."
 		];
 		
 		/**
@@ -215,12 +217,21 @@
 		}
 		
 		/**
-		 * Prüft, ob eine der Ausdruck wahr ist.
+		 * Prüft, ob ein Wert einem Vergleichswert entspricht.
 		 * @param mixed $value
 		 * @return boolean
 		 */
-		public function validateExpression( $value ) {
-			return is_bool($value);
+		public function validateEquals( $value, $compare ) {
+			return $value === $compare;
+		}
+		
+		/**
+		 * Prüft, ob ein Wert nicht dem Vergleichswert entspricht.
+		 * @param mixed $value
+		 * @return boolean
+		 */
+		public function validateEqualsNot( $value, $compare ) {
+			return $value !== $compare;
 		}
 		
 		/**
@@ -304,15 +315,15 @@
 	 */
 	class ValidationMessage {
 		
-		const CODE_OK					= 0;
-		const CODE_REQUIRED				= 1;
-		const CODE_NOT_STRING			= 2;	
-		const CODE_NOT_INTEGER			= 3;
-		const CODE_NOT_FLOAT			= 4;
-		const CODE_NOT_BOOL				= 5;
-		const CODE_NOT_EMAIL			= 6;
-		const CODE_NOT_URL				= 7;
-		const CODE_NOT_DATETIME			= 8;
+		const CODE_OK			= 0;
+		const CODE_REQUIRED		= 1;
+		const CODE_NOT_STRING		= 2;	
+		const CODE_NOT_INTEGER		= 3;
+		const CODE_NOT_FLOAT		= 4;
+		const CODE_NOT_BOOL		= 5;
+		const CODE_NOT_EMAIL		= 6;
+		const CODE_NOT_URL		= 7;
+		const CODE_NOT_DATETIME		= 8;
 		const CODE_EXPRESSION_FAILED	= 9;
 		
 		/**
