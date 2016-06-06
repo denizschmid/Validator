@@ -16,7 +16,7 @@
 		const VALIDATE_EMAIL			= 5;
 		const VALIDATE_URL			= 6;
 		const VALIDATE_DATETIME			= 7;
-		const VALIDATE_NOT_EMPTY		= 8;
+		const VALIDATE_NOT_EMPTY                = 8;
 		const VALIDATE_EQUALS			= 9;
 		const VALIDATE_EQUALS_NOT		= 10;
 				
