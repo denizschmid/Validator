@@ -18,6 +18,7 @@
 		const VALIDATE_DATETIME			= 7;
 		const VALIDATE_NOT_EMPTY		= 8;
 		const VALIDATE_EQUALS			= 9;
+		const VALIDATE_EQUALS_NOT		= 10;
 				
 		private $VALIDATION_FUNCTION_MAPPING = [
 			VALIDATOR::VALIDATE_STRING		=> "validateString",
